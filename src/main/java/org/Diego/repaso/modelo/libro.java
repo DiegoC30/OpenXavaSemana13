@@ -3,7 +3,9 @@ package org.Diego.repaso.modelo;
 import java.time.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
+import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
 import lombok.*;
@@ -12,15 +14,17 @@ import lombok.*;
 @Getter
 @Setter
 public class libro {
+ 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Hidden
-    private Long idLibro;  
+    private String idLibro;
     
     @Column(length = 50)
     private String titulo;
     
-    @Column(length = 50, nullable = true)
+    @Column(length = 50)
     private String autor;
     
     @Column(length = 10)
